@@ -45,8 +45,6 @@ namespace setts
         long mil = millis();
         if (mil - timer >= 1000)
         {
-            // Serial.println(sett.rtc.timeToString());
-            // Serial.println(int(sett.rtc.daySeconds() - (uint32_t)db::db[kk::timerr]));
             timer = mil;
             sett.updater()
                 .update(H(hum_1), String((float)random(80, 100) / 10, 1) + "%")
