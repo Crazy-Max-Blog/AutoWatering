@@ -17,26 +17,49 @@ namespace setts
         sett.onBuild(build);
 
         NTP.begin(4);
-        while(!NTP.tick());
+        while (!NTP.tick())
+            ;
         sett.rtc.sync(NTP);
         Serial.print("Time: ");
         Serial.println(sett.rtc.daySeconds());
+    }
+
+    void sendData(int hum_1, int hum_2, byte water) {
+        sett.updater()
+            .update(H(hum_1), String(hum_1) + "%")
+            .update(H(hum_2), String(hum_2) + "%")
+            .update(H(water), String(water) + "%");
+    }
+
+    void waterAlarm(bool wout)
+    {
+        sett.updater()
+            .update(H(wout), wout ? "Протечки нет" : "Протечка 💦")
+            .updateColor(H(wout), wout ? sets::Colors::Green : sets::Colors::Red);
     }
 
     void tick()
     {
         sett.tick();
 
-        static long timer = 0;
+        /*static long timer = 0;
         long mil = millis();
-        if (mil - timer >= 1000)
+        if (mil - timer >= 500)
         {
             timer = mil;
-            sett.updater()
+            /*sett.updater()
                 .update(H(hum_1), String((float)random(80, 100) / 10, 1) + "%")
                 .update(H(hum_2), String((float)random(800, 1000) / 100, 2) + "%")
-                .update(H(water), (String)random(100) + "%");
-        }
+                .update(H(water), (String)random(100) + "%");*//*
+            
+            sendData(
+                random(80, 100),
+                random(20, 50),
+                random(100)
+            );
+
+            waterAlarm(random(2) == 0);
+        }*/
     }
 
     void build(sets::Builder &b)
@@ -56,6 +79,14 @@ namespace setts
         }
 
         b.Label(H(water), "Уровень воды в бочке");
+        b.Label(H(wout), "Протечка");
+
+        /*static bool bb = false;
+        if (b.Button("Water Out"))
+        {
+            bb = !bb;
+            waterAlarm(bb);
+        }*/
 
         {
             sets::Menu m(b, "Автоматизации");
@@ -113,8 +144,10 @@ namespace setts
 
             {
                 sets::Buttons btns(b);
-                if (b.Button("Save")) db::db.update();
-                if (b.Button("Restart")) ESP.restart();
+                if (b.Button("Save"))
+                    db::db.update();
+                if (b.Button("Restart"))
+                    ESP.restart();
             }
         }
     }
