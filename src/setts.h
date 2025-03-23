@@ -133,10 +133,8 @@ namespace setts
 
             {
                 sets::Buttons btns(b);
-                if (b.Button("Save"))
-                    db::db.update();
-                if (b.Button("Restart"))
-                    ESP.restart();
+                if (b.Button("Save")) db::db.update();
+                if (b.Button("Restart")) ESP.restart();
             }
         }
     }
