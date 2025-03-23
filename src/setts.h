@@ -3,8 +3,6 @@
 #include "db.h"
 #include <SettingsGyverWS.h>
 
-//#include <WiFiUdp.h>
-//#include <NTPClient.h>
 #include <GyverNTP.h>
 
 namespace setts
@@ -18,23 +16,11 @@ namespace setts
         sett.begin();
         sett.onBuild(build);
 
-        //WiFiUDP ntpUDP;
-        //NTPClient timeClient(ntpUDP, "pool.ntp.org");
-        //timeClient.begin();
-        //timeClient.update();
-
-        // Serial.print("Time: ");
-        // Serial.println(timeClient.getEpochTime());
-        //setStampZone(4);
-        //sett.rtc.sync(timeClient.getEpochTime());
-        //GyverNTP ntp;
-        //ntp.begin();
         NTP.begin(4);
         while(!NTP.tick());
         sett.rtc.sync(NTP);
         Serial.print("Time: ");
         Serial.println(sett.rtc.daySeconds());
-        // Serial.println(sett.rtc.daySeconds());
     }
 
     void tick()
