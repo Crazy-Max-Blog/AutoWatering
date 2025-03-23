@@ -52,10 +52,6 @@ namespace setts
                 .update(H(hum_1), String((float)random(80, 100) / 10, 1) + "%")
                 .update(H(hum_2), String((float)random(800, 1000) / 100, 2) + "%")
                 .update(H(water), (String)random(100) + "%");
-
-            /*db::db[kk::hum_1] = String((float)random(80, 100) / 10, 1) + "%";
-            db::db[kk::hum_2] = String((float)random(800, 1000) / 100, 2) + "%";
-            db::db[kk::water] = (String)random(100) + "%";*/
         }
     }
 
