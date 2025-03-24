@@ -7,15 +7,11 @@
 #include "setts.h"
 
 #include "waterAlarm.h"
-
-#include "waterSensorBase.h"
-#include "waterSensorI2C.h"
-#include "waterSensorADC.h"
 #include "waterLevel.h"
 #include "water.h"
+#include "sens.h"
 
 namespace sensor {
-    waterSensorBase* sens[] = {new waterSensorADC(WATER_PORT_FIRST), new waterSensorI2C(WATER_PORT_SECOND)};
     void init() {
         init_waterAlarm();
         init_waterLevel();
