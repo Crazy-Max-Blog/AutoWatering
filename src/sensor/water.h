@@ -1,9 +1,10 @@
 #pragma once
 
 #include <CrazyMgBot.h>
+#include "../settings.h"
 
 namespace sensor {
-    CMB::MGR_2I2C relay(7);
+    CMB::MGR_2I2C relay(RELAY_PORT);
 
     void init_water() {
         Wire.begin();
@@ -14,7 +15,7 @@ namespace sensor {
 
     void water(byte id) {
         relay.setPin(id, 1);
-        delay(1000);
+        delay(WATER_TIME);
         relay.setPin(id, 0);
     }
 }

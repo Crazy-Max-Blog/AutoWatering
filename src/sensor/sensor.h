@@ -2,6 +2,8 @@
 
 #include <Arduino.h>
 
+#include "../settings.h"
+
 #include "setts.h"
 
 #include "waterAlarm.h"
@@ -13,7 +15,7 @@
 #include "water.h"
 
 namespace sensor {
-    waterSensorBase* sens[] = {new waterSensorADC(1, 2), new waterSensorI2C(3, 4)};
+    waterSensorBase* sens[] = {new waterSensorADC(WATER_PORT_FIRST), new waterSensorI2C(WATER_PORT_SECOND)};
     void init() {
         init_waterAlarm();
         init_waterLevel();

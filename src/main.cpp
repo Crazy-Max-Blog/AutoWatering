@@ -1,5 +1,7 @@
 #include <Arduino.h>
 
+#include "./settings.h"
+
 #include "wific.h"
 #include "setts.h"
 #include "sensor/sensor.h"
