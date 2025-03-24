@@ -5,6 +5,8 @@
 
 #include <GyverNTP.h>
 
+#include "sensor/water.h"
+
 namespace setts
 {
     SettingsGyverWS sett("Автополив", &db::db);
@@ -16,19 +18,22 @@ namespace setts
         sett.begin();
         sett.onBuild(build);
 
-        NTP.begin(4);
-        while (!NTP.tick());
-        sett.rtc.sync(NTP);
-        Serial.print("Time: ");
-        Serial.println(sett.rtc.daySeconds());
+        if (WiFi.status() == WL_CONNECTED)
+        {
+            NTP.begin(4);
+            while (!NTP.tick());
+            sett.rtc.sync(NTP);
+            Serial.print("Time: ");
+            Serial.println(sett.rtc.daySeconds());
+        }
     }
 
     void sendData(int hum_1, int hum_2, byte water)
     {
         sett.updater()
-            .update(H(hum_1), String(hum_1) + "%")
-            .update(H(hum_2), String(hum_2) + "%")
-            .update(H(water), String(water) + "%");
+            .update(H(hum_1), String((String)hum_1 + "%"))
+            .update(H(hum_2), String((String)hum_2 + "%"))
+            .update(H(water), String((String)water + "%"));
     }
 
     void waterAlarm(bool wout)
@@ -53,14 +58,14 @@ namespace setts
             .update(H(water), (String)random(100) + "%");*/
         /*
 
-sendData(
-random(80, 100),
-random(20, 50),
-random(100)
-);
+        sendData(
+        random(80, 100),
+        random(20, 50),
+        random(100)
+        );
 
-waterAlarm(random(2) == 0);
-}*/
+        waterAlarm(random(2) == 0);
+        }*/
     }
 
     void build(sets::Builder &b)
@@ -68,15 +73,19 @@ waterAlarm(random(2) == 0);
         {
             sets::Row r(b, "Первая группа", sets::DivType::Block);
             b.Label(H(hum_1), "Влажность");
-            if (b.Button("Полить"))
+            if (b.Button("Полить")) {
+                sensor::water(0);
                 Serial.println("Water1");
+            }
         }
 
         {
             sets::Row r(b, "Вторая группа", sets::DivType::Block);
             b.Label(H(hum_2), "Влажность");
-            if (b.Button("Полить"))
-                Serial.println("Water2");
+            if (b.Button("Полить")) {
+                sensor::water(1);
+                Serial.println("Water1");
+            }
         }
 
         b.Label(H(water), "Уровень воды в бочке");

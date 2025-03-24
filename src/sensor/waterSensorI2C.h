@@ -1,5 +1,7 @@
 #pragma once
 
+#include <CrazyMgBot.h>
+
 namespace sensor {
     class waterSensorI2C : public waterSensorBase {
         public:

@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#include "wifi.h"
+#include "wific.h"
 #include "setts.h"
 #include "sensor/sensor.h"
 #include "tg.h"

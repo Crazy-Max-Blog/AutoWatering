@@ -10,6 +10,7 @@
 #include "waterSensorI2C.h"
 #include "waterSensorADC.h"
 #include "waterLevel.h"
+#include "water.h"
 
 namespace sensor {
     waterSensorBase* sens[] = {new waterSensorADC(1, 2), new waterSensorI2C(3, 4)};
@@ -18,6 +19,7 @@ namespace sensor {
         init_waterLevel();
         sens[0]->init();
         sens[1]->init();
+        init_water();
     }
 
     void tick() {
