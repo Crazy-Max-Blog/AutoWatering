@@ -7,6 +7,8 @@
 
 #include "sensor/water.h"
 
+#include "tg.h"
+
 namespace setts
 {
     SettingsGyverWS sett("Автополив", &db::db);
@@ -89,7 +91,7 @@ namespace setts
         }
 
         b.Label(H(water), "Уровень воды в бочке");
-        b.Label(H(wout), "Протечка");
+        b.Label(H(wout), "Протечка", "Протечки нет");
 
         /*static bool bb = false;
         if (b.Button("Water Out"))
@@ -147,8 +149,10 @@ namespace setts
                 b.Switch(kk::tg_en, "Telegram Bot");
                 if (db::db[kk::tg_en])
                 {
-                    b.Input(kk::tg_id, "Chat ID");
-                    b.Pass(kk::tg_token, "Token");
+                    bool v = false;
+                    v |= b.Input(kk::tg_id, "Chat ID");
+                    v |= b.Pass(kk::tg_token, "Token");
+                    if(v) tg::init();
                 }
             }
 

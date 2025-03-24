@@ -31,6 +31,7 @@ namespace sensor {
             if(v && !b) {
                 b = true;
                 setts::waterAlarm(true);
+                tg::send_waterAlarm();
             } else if(!v && b) {
                 b = false;
                 setts::waterAlarm(false);
