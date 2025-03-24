@@ -17,14 +17,14 @@ namespace setts
         sett.onBuild(build);
 
         NTP.begin(4);
-        while (!NTP.tick())
-            ;
+        while (!NTP.tick());
         sett.rtc.sync(NTP);
         Serial.print("Time: ");
         Serial.println(sett.rtc.daySeconds());
     }
 
-    void sendData(int hum_1, int hum_2, byte water) {
+    void sendData(int hum_1, int hum_2, byte water)
+    {
         sett.updater()
             .update(H(hum_1), String(hum_1) + "%")
             .update(H(hum_2), String(hum_2) + "%")
@@ -47,19 +47,20 @@ namespace setts
         if (mil - timer >= 500)
         {
             timer = mil;*/
-            /*sett.updater()
-                .update(H(hum_1), String((float)random(80, 100) / 10, 1) + "%")
-                .update(H(hum_2), String((float)random(800, 1000) / 100, 2) + "%")
-                .update(H(water), (String)random(100) + "%");*//*
-            
-            sendData(
-                random(80, 100),
-                random(20, 50),
-                random(100)
-            );
+        /*sett.updater()
+            .update(H(hum_1), String((float)random(80, 100) / 10, 1) + "%")
+            .update(H(hum_2), String((float)random(800, 1000) / 100, 2) + "%")
+            .update(H(water), (String)random(100) + "%");*/
+        /*
 
-            waterAlarm(random(2) == 0);
-        }*/
+sendData(
+random(80, 100),
+random(20, 50),
+random(100)
+);
+
+waterAlarm(random(2) == 0);
+}*/
     }
 
     void build(sets::Builder &b)
