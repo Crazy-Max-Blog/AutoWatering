@@ -10,6 +10,7 @@
 #include "waterLevel.h"
 #include "water.h"
 #include "sens.h"
+#include "mqtt.h"
 
 namespace sensor {
     void init() {
@@ -27,10 +28,12 @@ namespace sensor {
             if(v && !b) {
                 b = true;
                 setts::waterAlarm(true);
+                mqtt::waterAlarm(true);
                 tg::send_waterAlarm();
             } else if(!v && b) {
                 b = false;
                 setts::waterAlarm(false);
+                mqtt::waterAlarm(false);
             }
         }
         static long timer = 0;
@@ -40,6 +43,12 @@ namespace sensor {
             timer = mil;
             
             setts::sendData(
+                sens[0]->getWater(),
+                sens[1]->getWater(),
+                get_waterLevel()
+            );
+            
+            mqtt::sendData(
                 sens[0]->getWater(),
                 sens[1]->getWater(),
                 get_waterLevel()
