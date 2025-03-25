@@ -22,6 +22,7 @@ namespace sensor {
     }
 
     void tick() {
+        tick_water();
         {
             static bool b = false;
             bool v = get_waterAlarm();
