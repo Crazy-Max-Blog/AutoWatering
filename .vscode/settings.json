@@ -10,5 +10,6 @@
         "string_view": "cpp",
         "initializer_list": "cpp",
         "ranges": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "C:/AutoWatering/lib/Adafruit_BusIO"
 }
