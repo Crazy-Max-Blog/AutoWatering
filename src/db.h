@@ -22,7 +22,11 @@ DB_KEYS(
     hum_max,
 
     time_1,
-    time_2);
+    time_2,
+
+    water_time_1,
+    water_time_2
+);
 
 namespace db
 {
@@ -54,6 +58,10 @@ namespace db
             (kk::hum_max, 50),
 
             (kk::time_1, 10 * 3600),
-            (kk::time_2, 21 * 3600));
+            (kk::time_2, 21 * 3600),
+
+            (kk::water_time_1, 10),
+            (kk::water_time_2, 10)
+        );
     }
 }
