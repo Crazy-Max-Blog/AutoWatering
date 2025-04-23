@@ -7,6 +7,6 @@ namespace sensor {
 
         virtual byte getWater() = 0;
 
-        virtual void water() = 0;
+        virtual void water(byte state) = 0;
     };
 }

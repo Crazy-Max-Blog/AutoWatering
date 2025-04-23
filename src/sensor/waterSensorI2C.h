@@ -9,6 +9,7 @@ namespace sensor {
         waterSensorI2C(byte skl_pin, byte sda_pin) : waterSensorBase() {
             _skl_pin = skl_pin;
             _sda_pin = sda_pin;
+            pinMode(25, OUTPUT);
         }
 
         void init() {
@@ -19,8 +20,9 @@ namespace sensor {
             return random(30, 50);
         }
 
-        void water() {
+        void water(byte state) {
             Serial.println("waterI2C");
+            digitalWrite(25, state);
         }
 
         private:

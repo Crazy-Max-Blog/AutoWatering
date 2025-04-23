@@ -7,6 +7,7 @@ namespace sensor {
         waterSensorADC(byte temp_pin, byte hum_pin) : waterSensorBase() {
             _temp_pin = temp_pin;
             _hum_pin = hum_pin;
+            pinMode(32, OUTPUT);
         }
 
         void init() {
@@ -17,8 +18,9 @@ namespace sensor {
             return random(80, 100);
         }
 
-        void water() {
+        void water(byte state) {
             Serial.println("waterADC");
+            digitalWrite(32, state);
         }
 
         private:

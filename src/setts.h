@@ -86,7 +86,7 @@ namespace setts
             b.Label(H(hum_2), "Влажность");
             if (b.Button("Полить")) {
                 sensor::water(1);
-                Serial.println("Water1");
+                Serial.println("Water2");
             }
         }
 

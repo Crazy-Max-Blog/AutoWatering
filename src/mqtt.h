@@ -106,6 +106,7 @@ namespace mqtt
                     //client.publish("esp32/temperature", "25°C"); // Replace with real sensor data
                 }
             }
+            if (client.connected()) client.loop();
         }
     }
 }
