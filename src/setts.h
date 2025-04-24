@@ -49,25 +49,27 @@ namespace setts
     {
         sett.tick();
 
-        /*static long timer = 0;
+        static long timer = 0;
         long mil = millis();
         if (mil - timer >= 500)
         {
-            timer = mil;*/
-        /*sett.updater()
-            .update(H(hum_1), String((float)random(80, 100) / 10, 1) + "%")
-            .update(H(hum_2), String((float)random(800, 1000) / 100, 2) + "%")
-            .update(H(water), (String)random(100) + "%");*/
-        /*
+            timer = mil;
+            /*sett.updater()
+                .update(H(hum_1), String((float)random(80, 100) / 10, 1) + "%")
+                .update(H(hum_2), String((float)random(800, 1000) / 100, 2) + "%")
+                .update(H(water), (String)random(100) + "%");*/
+            
 
-        sendData(
-        random(80, 100),
-        random(20, 50),
-        random(100)
-        );
+            /*sendData(
+            random(80, 100),
+            random(20, 50),
+            random(100)
+            );
 
-        waterAlarm(random(2) == 0);
-        }*/
+            waterAlarm(random(2) == 0);*/
+            
+            //sett.updater().update(H(wlew), analogRead(15));
+        }
     }
 
     void build(sets::Builder &b)
@@ -91,7 +93,8 @@ namespace setts
         }
 
         b.Label(H(water), "Уровень воды в бочке");
-        b.Label(H(wout), "Протечка", "Протечки нет");
+        b.Label(H(wout), "Протечка", "Протечки нет", sets::Colors::Green);
+        //b.Label(H(wlew), "ADC");
 
         /*static bool bb = false;
         if (b.Button("Water Out"))
@@ -118,7 +121,8 @@ namespace setts
 
             {
                 sets::Group r(b, "Вторая группа");
-                b.Slider("Влажность полива", 0, 100, 1, "%");
+                //b.Slider("Влажность полива", 0, 100, 1, "%");
+                b.Slider2(kk::hum_min1, kk::hum_max1, "Влажность полива", 0, 100, 1, "%");
                 b.Slider(kk::water_time_2, "Время полива", 0, 10, 1, "сек.");
             }
         }

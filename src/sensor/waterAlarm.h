@@ -14,7 +14,7 @@ namespace sensor {
         long mil = millis();
         if(mil - timer >= 500) {
             timer = mil;
-            waterAlarm_bool = random(20) != 0;
+            waterAlarm_bool = analogRead(A0) > 4000;
         }
         return waterAlarm_bool;
     }

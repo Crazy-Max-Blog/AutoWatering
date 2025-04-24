@@ -20,6 +20,8 @@ DB_KEYS(
 
     hum_min,
     hum_max,
+    hum_min1,
+    hum_max1,
 
     time_1,
     time_2,
@@ -56,6 +58,8 @@ namespace db
 
             (kk::hum_min, 10),
             (kk::hum_max, 50),
+            (kk::hum_min1, 10),
+            (kk::hum_max1, 50),
 
             (kk::time_1, 10 * 3600),
             (kk::time_2, 21 * 3600),

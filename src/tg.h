@@ -81,6 +81,6 @@ namespace tg
     void send_waterAlarm()
     {
         if (db::db[kk::tg_en])
-            bot.sendMessage("Water alarm!");
+            bot.sendMessage("Протечка!");
     }
 }
