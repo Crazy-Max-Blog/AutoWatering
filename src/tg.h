@@ -18,8 +18,8 @@ namespace tg
             //String menu1 = F("Полить_1 \t Полить_2 \t Test \n Получить_данные");
             //String call1 = F("water_1,water_2,https://alexgyver.ru/,get_data");
             //bot.inlineMenuCallback("Привет. Я автополив.", menu1, call1);
-            bot.sendMessage("Привет. Я автополив.");
-            bot.showMenu("Полить 1 \t Полить 2 \n Получить данные");
+            //bot.sendMessage("Привет. Я автополив.");
+            bot.showMenuText("Привет. Я автополив.", "Полить 1 \t Полить 2 \n Получить данные");
         }
     }
 
@@ -82,5 +82,11 @@ namespace tg
     {
         if (db::db[kk::tg_en])
             bot.sendMessage("Протечка!");
+    }
+
+    void send_noWater()
+    {
+        if (db::db[kk::tg_en])
+            bot.sendMessage("Вода заканчивается!");
     }
 }

@@ -68,7 +68,7 @@ namespace setts
 
             waterAlarm(random(2) == 0);*/
             
-            //sett.updater().update(H(wlew), analogRead(15));
+            sett.updater().update(H(wlew), analogRead(33));
         }
     }
 
@@ -94,7 +94,7 @@ namespace setts
 
         b.Label(H(water), "Уровень воды в бочке");
         b.Label(H(wout), "Протечка", "Протечки нет", sets::Colors::Green);
-        //b.Label(H(wlew), "ADC");
+        b.Label(H(wlew), "ADC");
 
         /*static bool bb = false;
         if (b.Button("Water Out"))

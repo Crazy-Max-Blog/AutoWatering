@@ -42,17 +42,26 @@ namespace sensor {
         if (mil - timer >= 500)
         {
             timer = mil;
+
+            byte wl = get_waterLevel();
+            static bool b = false;
+            if(wl < 10 && !b) {
+                b = true;
+                tg::send_noWater();
+            } else if(wl >= 10 && b) {
+                b = false;
+            }
             
             setts::sendData(
                 sens[0]->getWater(),
                 sens[1]->getWater(),
-                get_waterLevel()
+                wl
             );
             
             mqtt::sendData(
                 sens[0]->getWater(),
                 sens[1]->getWater(),
-                get_waterLevel()
+                wl
             );
         }
     }

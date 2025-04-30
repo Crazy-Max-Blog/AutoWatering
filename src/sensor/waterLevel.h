@@ -10,6 +10,6 @@ namespace sensor {
     }
 
     byte get_waterLevel() {
-        return random(100);
+        return constrain(map(analogRead(33), 3900, 3000, 0, 100), 0, 100);//random(100);
     }
 }

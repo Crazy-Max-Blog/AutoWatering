@@ -15,7 +15,7 @@ namespace sensor {
         }
         
         byte getWater() {
-            return random(80, 100);
+            return constrain(map(analogRead(34), 3500, 1500, 0, 100), 0, 100);//random(80, 100);
         }
 
         void water(byte state) {
