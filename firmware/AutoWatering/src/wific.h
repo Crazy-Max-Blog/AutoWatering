@@ -21,7 +21,7 @@ namespace wifi {  // Переименовано в wifi
     }
 
     void startAP() {
-        WiFi.softAP("AP ESP");
+        WiFi.softAP("AutoWatering");
         Serial.print("AP IP: ");
         Serial.println(WiFi.softAPIP());
     }
